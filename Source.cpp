@@ -35,8 +35,7 @@ void fill(node* currentNode, int index) {
 }
 void swap(node* currentNode, int index) {
 	if (index == 0) {
-		while (currentNode->state[1] < 3)
-		{
+		while (currentNode->state[1] < jugsMaxCap[1]) {
 			if (currentNode->state[0] != 0) {
 				currentNode->state[0] --;
 				currentNode->state[1]++;
@@ -44,10 +43,8 @@ void swap(node* currentNode, int index) {
 			else
 				break;
 		}
-	}
-	else {
-		while (currentNode->state[0] < 4)
-		{
+	}else {
+		while (currentNode->state[0] < jugsMaxCap[0]) {
 			if (currentNode->state[1] != 0) {
 				currentNode->state[1] --;
 				currentNode->state[0]++;
@@ -55,7 +52,6 @@ void swap(node* currentNode, int index) {
 			else
 				break;
 		}
-
 	}
 }
 void empty(node* currentNode, int index) {
@@ -104,6 +100,8 @@ bool update(node* currentNode) {
 		empty(currentNode->children[4], 0);
 		empty(currentNode->children[5], 1);
 	}
+
+	printf("Added %d %d\n", currentNode->state[0], currentNode->state[1]);
 
 	finishedPoints[index][0] = currentNode->state[0];
 	finishedPoints[index][1] = currentNode->state[1];
